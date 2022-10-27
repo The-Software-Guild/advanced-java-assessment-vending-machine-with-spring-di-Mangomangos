@@ -93,17 +93,17 @@ class VendingMachineServiceImplTest {
 
     @Test
     public void testAddItemEntryNullName () {
-        Item item1 = new Item();
-        item1.setCost(BigDecimal.valueOf(1.59));
-        item1.setNumInventoryItems(3);
+        Item item = new Item();
+        item.setCost(BigDecimal.valueOf(1.59));
+        item.setNumInventoryItems(3);
 
-        assertThrows(VendingMachineDataValidationException.class, () -> service.addItem(item1));
-
+        assertThrows(VendingMachineDataValidationException.class, () -> service.addItem(item));
     }
 
     @Test
     public void testAddItemEntryNullCost () {
         Item item = new Item();
+        item.setName("Test1");
         item.setNumInventoryItems(3);
 
         assertThrows(VendingMachineDataValidationException.class, () -> service.addItem(item));
@@ -112,6 +112,7 @@ class VendingMachineServiceImplTest {
     @Test
     public void testAddItemEntryNullInventory () {
         Item item = new Item();
+        item.setName("Test1");
         item.setCost(BigDecimal.valueOf(1.59));
 
         assertThrows(VendingMachineDataValidationException.class, () -> service.addItem(item));
@@ -142,10 +143,9 @@ class VendingMachineServiceImplTest {
         Item item = new Item();
         item.setNumInventoryItems(5);
         item.setCost(BigDecimal.valueOf(2.50));
+        BigDecimal totalFunds = BigDecimal.valueOf(0);
 
-
-        assertThrows(VendingMachineInsufficientFundsException.class, () -> service.sellItem(BigDecimal.valueOf(0), item));
-
+        assertThrows(VendingMachineInsufficientFundsException.class, () -> service.sellItem(totalFunds, item));
     }
 
     @Test
@@ -153,8 +153,9 @@ class VendingMachineServiceImplTest {
         Item item = new Item();
         item.setNumInventoryItems(0);
         item.setCost(BigDecimal.valueOf(2.50));
+        BigDecimal totalFunds = BigDecimal.valueOf(5.50);
 
-       assertThrows(VendingMachineItemInventoryException.class, () -> service.sellItem(BigDecimal.valueOf(5.50), item));
+        assertThrows(VendingMachineItemInventoryException.class, () -> service.sellItem(totalFunds, item));
     }
 
     @Test
@@ -164,9 +165,10 @@ class VendingMachineServiceImplTest {
         item.setNumInventoryItems(6);
         item.setCost(BigDecimal.valueOf(2.50));
 
-
         BigDecimal difference = service.sellItem(funds, item);
-        assertEquals(BigDecimal.valueOf(3.0), difference);
+        BigDecimal expected = BigDecimal.valueOf(3.0);
+
+        assertEquals(expected, difference);
     }
 
 }

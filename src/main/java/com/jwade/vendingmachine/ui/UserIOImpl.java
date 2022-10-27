@@ -38,7 +38,11 @@ public class UserIOImpl implements UserIO{
         int num;
         do {
             System.out.println(prompt);
-            num = Integer.parseInt(sc.nextLine());
+            try {
+                num = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                num  = Integer.MAX_VALUE;
+            }
         }
         while(num < min || num > max);
 

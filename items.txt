@@ -1,8 +1,8 @@
 Snickers Bar,0.99,8
 CocaCola,1.99,14
-abc,1.98,7
+Root Beer,1.98,7
 Canada Dry,2.49,2
-Potato Chip,3.49,97
+Potato Chips,3.49,96
 Pepsi,1.99,6
 Cheetos,2.99,-100
 Mountain Dew,5.99,16

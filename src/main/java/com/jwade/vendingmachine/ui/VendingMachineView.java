@@ -88,7 +88,7 @@ public class VendingMachineView {
     }
     
      public void displayUnknownCommand() {
-        io.print("Invalid input. Please input 0, 1 or 2" + "\n");
+        io.print("Invalid input. Please input 1, 2 or 3" + "\n");
     }
     
 

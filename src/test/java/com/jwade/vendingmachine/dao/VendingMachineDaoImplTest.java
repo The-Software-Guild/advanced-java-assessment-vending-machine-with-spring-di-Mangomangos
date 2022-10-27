@@ -46,17 +46,12 @@ class VendingMachineDaoImplTest {
     private VendingMachineDaoImpl dao;
     private FileDao fileDao;
 
-    private Map<String, Item> itemMap = new HashMap<>();
 
 
     @BeforeEach
     void setUp() throws VendingMachinePersistenceException {
-
         fileDao = new FileDaoTestImpl();
         dao = new VendingMachineDaoImpl(fileDao, "Hey");
-        itemMap = fileDao.readFile("Hey");
-
-
     }
 
     @Test
@@ -66,10 +61,9 @@ class VendingMachineDaoImplTest {
     }
 
     @Test
-    public void changeInventoryCountTest(){
-        Item item = dao.getItem("item1");
-        item.setNumInventoryItems(3);
-        assertEquals(3, item.getNumInventoryItems());
+    public void changeInventoryCountTest() throws VendingMachinePersistenceException {
+        dao.changeInventoryCount(dao.getItem("item1"), 3);
+        assertEquals(3, (dao.getItem("item1").getNumInventoryItems()));
 
     }
 
