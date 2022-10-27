@@ -8,6 +8,7 @@ import com.jwade.vendingmachine.dto.Item;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -90,17 +91,19 @@ public class VendingMachineServiceImpl implements VendingMachineService{
     public BigDecimal sellItem(BigDecimal totalFunds, Item item) throws
             VendingMachineItemInventoryException, VendingMachineInsufficientFundsException, VendingMachinePersistenceException {
 
-        if (totalFunds.compareTo(item.getCost()) < 0){
-            BigDecimal difference = item.getCost().subtract(totalFunds);
-            throw new VendingMachineInsufficientFundsException(
-                    "You don't have enough money to buy this item. You need $" + difference + " more."
-            );
-        }
-        if (item.getNumInventoryItems() == 0){
+       if (item.getNumInventoryItems() == 0){
             throw new VendingMachineItemInventoryException(
                     "Sorry this item is not in stock."
             );
-        } else {
+        }
+
+       else if (totalFunds.compareTo(item.getCost()) < 0){
+            BigDecimal difference = item.getCost().subtract(totalFunds);
+            throw new VendingMachineInsufficientFundsException(
+                    "You don't have enough money to buy this item. Please add funds. You need $" + difference + " more."
+            );
+        }
+       else {
             dao.changeInventoryCount(item, item.getNumInventoryItems()-1);
             auditDao.writeAuditEntry(
                     "Item: " +item.getName() + " has sold. Number in inventory " + item.getNumInventoryItems()

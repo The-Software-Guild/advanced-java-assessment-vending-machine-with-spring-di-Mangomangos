@@ -63,3 +63,5 @@ Fri Oct 21 08:34:16 PDT 2022 :: Item Snickers Bar has been sold. Number in Inven
 2022-10-26T17:22:58.043699 : Item: Snickers Bar has sold. Number in inventory 10
 2022-10-26T17:25:14.747589 : Item: Snickers Bar has sold. Number in inventory 9
 2022-10-26T17:30:29.192921 : Item: Gum has sold. Number in inventory 10
+Thu Oct 27 13:56:55 EDT 2022 :: Item: Canada Dry has sold. Number in inventory 2
+Thu Oct 27 13:57:52 EDT 2022 :: Item: Snickers Bar has sold. Number in inventory 8

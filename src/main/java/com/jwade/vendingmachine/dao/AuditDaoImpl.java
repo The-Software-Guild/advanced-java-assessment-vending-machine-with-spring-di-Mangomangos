@@ -4,7 +4,8 @@ package com.jwade.vendingmachine.dao;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -27,8 +28,10 @@ public class AuditDaoImpl implements AuditDao{
             );
         }
 
-        LocalDateTime timestamp = LocalDateTime.now();
-        out.println(timestamp.toString() + " : " + entry);
+        ZonedDateTime timestamp = ZonedDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd kk:mm:ss zzz yyyy");
+        String formatDateTime = timestamp.format(formatter);
+        out.println( formatDateTime + " :: " + entry);
         out.flush();
     }
     

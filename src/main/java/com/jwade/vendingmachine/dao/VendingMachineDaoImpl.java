@@ -16,19 +16,20 @@ public class VendingMachineDaoImpl implements VendingMachineDao{
 
     private Map<String, Item> itemMap = new HashMap<>();
     private FileDao fileDao = new FileDaoImpl();
-    private final String ITEM_FILE;
+
+    private String ITEM_FILE;
 
     public VendingMachineDaoImpl () throws VendingMachinePersistenceException {
-        ITEM_FILE = "items.txt";
+        String ITEM_FILE = "items.txt";
         itemMap = fileDao.readFile(ITEM_FILE);
     }
 
-    public VendingMachineDaoImpl(String itemTextFile) throws VendingMachinePersistenceException {
-        ITEM_FILE = itemTextFile;
-        itemMap = fileDao.readFile(itemTextFile);
+    public VendingMachineDaoImpl(FileDao fileDao, String ITEM_FILE) throws VendingMachinePersistenceException {
+        this.fileDao = fileDao;
+        itemMap = fileDao.readFile(ITEM_FILE);
+
     }
-    
-    
+
     @Override
     public Item getItem(String name) {
         return itemMap.get(name);

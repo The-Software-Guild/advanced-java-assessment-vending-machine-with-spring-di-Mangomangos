@@ -48,9 +48,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" + "name=" + name + ", " +
-                "cost=" + cost + ", " +
-                "numInventoryItems=" + numInventoryItems + '}';
+        return name + ", " +
+                "$" + cost + ", Stock: " +
+                numInventoryItems + '}';
     }
 
     @Override

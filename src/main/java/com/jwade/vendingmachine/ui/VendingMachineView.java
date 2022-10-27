@@ -81,9 +81,9 @@ public class VendingMachineView {
     }
     
     public void printChanges(HashMap<Coins,Integer> map){
-        io.print("Here is your change. \n");
+        io.print("Here is your change: \n");
         for(Coins c:map.keySet()){
-            io.print(c.name()+"("+c.getValue()+"): "+map.get(c)+"\n");
+            io.print(c.name()+"("+c.getValue()+"): "+map.get(c));
         }
     }
     
@@ -112,6 +112,6 @@ public class VendingMachineView {
     // goodbye
     public void displayQuitMessage()
     {
-        io.print("Goodbye" + "\n");
+        io.print("\nGoodbye");
     }
 }
