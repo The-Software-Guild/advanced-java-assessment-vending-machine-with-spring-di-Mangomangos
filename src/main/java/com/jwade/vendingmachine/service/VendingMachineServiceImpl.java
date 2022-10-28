@@ -60,7 +60,7 @@ public class VendingMachineServiceImpl implements VendingMachineService{
         if ((item.getName()) == null ||
                 (item.getName().trim().length() == 0) ||
                 (item.getCost() == null) ||
-                (item.getNumInventoryItems() < 0)
+                (item.getNumInventoryItems() <= 0)
         ){
             throw new VendingMachineDataValidationException (
                 "ERROR: Item name and cost cannot be blank. Number of items in inventory cannot be negative."

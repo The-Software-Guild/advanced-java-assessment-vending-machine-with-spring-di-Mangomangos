@@ -66,3 +66,7 @@ Fri Oct 21 08:34:16 PDT 2022 :: Item Snickers Bar has been sold. Number in Inven
 Thu Oct 27 13:56:55 EDT 2022 :: Item: Canada Dry has sold. Number in inventory 2
 Thu Oct 27 13:57:52 EDT 2022 :: Item: Snickers Bar has sold. Number in inventory 8
 Thu Oct 27 15:39:02 EDT 2022 :: Item: Potato Chip has sold. Number in inventory 96
+Fri Oct 28 14:42:34 EDT 2022 :: Item: Pepsi has sold. Number in inventory 5
+Fri Oct 28 14:42:44 EDT 2022 :: Item: Snickers Bar has sold. Number in inventory 7
+Fri Oct 28 16:30:35 EDT 2022 :: Item: Canada Dry has sold. Number in inventory 1
+Fri Oct 28 16:30:41 EDT 2022 :: Item: Pepsi has sold. Number in inventory 4

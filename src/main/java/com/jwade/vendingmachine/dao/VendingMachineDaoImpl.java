@@ -24,9 +24,9 @@ public class VendingMachineDaoImpl implements VendingMachineDao{
         itemMap = fileDao.readFile(ITEM_FILE);
     }
 
-    public VendingMachineDaoImpl(FileDao fileDao, String ITEM_FILE) throws VendingMachinePersistenceException {
+    public VendingMachineDaoImpl(FileDao fileDao) throws VendingMachinePersistenceException {
         this.fileDao = fileDao;
-        itemMap = fileDao.readFile(ITEM_FILE);
+        itemMap = fileDao.readFile("Hey");
 
     }
 

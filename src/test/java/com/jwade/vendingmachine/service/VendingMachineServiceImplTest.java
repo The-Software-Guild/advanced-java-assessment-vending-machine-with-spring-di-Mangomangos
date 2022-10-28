@@ -6,75 +6,23 @@ import com.jwade.vendingmachine.dao.VendingMachinePersistenceException;
 import com.jwade.vendingmachine.dto.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class VendingMachineServiceImplTest {
 
-    class VendingMachineDaoTestImpl implements VendingMachineDao {
-
-        @Override
-        public Item getItem(String name) throws VendingMachinePersistenceException {
-            if ("item".equals(name)){
-                Item item = new Item();
-                item.setName("item");
-                return item;
-            }
-            return null;
-        }
-
-        @Override
-        public List<Item> listAllItems() throws VendingMachinePersistenceException {
-            Item item1 = new Item();
-            Item item2 = new Item();
-            Item item3 = new Item();
-
-            item1.setNumInventoryItems(2);
-            item2.setNumInventoryItems(4);
-            item3.setNumInventoryItems(-5);
-
-            List<Item> itemList = new ArrayList<>();
-            itemList.add(0, item1);
-            itemList.add(1, item2);
-            itemList.add(2, item3);
-
-            return itemList;
-        }
-
-        @Override
-        public Item addItem(Item item) throws VendingMachinePersistenceException {
-            return null;
-        }
-
-        @Override
-        public Item removeItem(Item item) throws VendingMachinePersistenceException {
-            return null;
-        }
-
-        @Override
-        public Item changeInventoryCount(Item item, int newCount) throws VendingMachinePersistenceException {
-            return null;
-        }
-    }
-
-    class AuditDaoTestDaoImpl implements AuditDao {
-
-        @Override
-        public void writeAuditEntry(String entry) throws VendingMachinePersistenceException {}
-    }
-
     private VendingMachineServiceImpl service;
 
     @BeforeEach
     void setUp() {
-        VendingMachineDao dao = new VendingMachineDaoTestImpl();
-        AuditDao auditDao = new AuditDaoTestDaoImpl();
 
-        service = new VendingMachineServiceImpl(dao, auditDao);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("service", VendingMachineServiceImpl.class);
     }
 
     @Test
@@ -110,7 +58,7 @@ class VendingMachineServiceImplTest {
     }
 
     @Test
-    public void testAddItemEntryNullInventory () {
+    public void testAddItemEntryZeroInventory () {
         Item item = new Item();
         item.setName("Test1");
         item.setCost(BigDecimal.valueOf(1.59));

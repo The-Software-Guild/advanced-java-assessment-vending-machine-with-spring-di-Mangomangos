@@ -3,55 +3,25 @@ package com.jwade.vendingmachine.dao;
 import com.jwade.vendingmachine.dto.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class VendingMachineDaoImplTest {
 
-    class FileDaoTestImpl implements FileDao {
-
-        @Override
-        public Item unmarshallItem(String line) throws VendingMachinePersistenceException {
-            return null;
-        }
-
-        @Override
-        public String marshallItem(Item item) {
-            return null;
-        }
-
-        @Override
-        public void writeFile(ArrayList<Item> items) throws VendingMachinePersistenceException {
-
-        }
-
-        @Override
-        public Map<String, Item> readFile(String fileName) throws VendingMachinePersistenceException {
-
-            Map<String, Item> itemsMap = new HashMap<>();
-            itemsMap.put("item1",new Item("item1", BigDecimal.valueOf(1.50), 1));
-            itemsMap.put("item2",new Item("item2", BigDecimal.valueOf(3.50), 4));
-
-            return itemsMap;
-        }
-    }
-
     private VendingMachineDaoImpl dao;
     private FileDao fileDao;
 
 
-
     @BeforeEach
     void setUp() throws VendingMachinePersistenceException {
-        fileDao = new FileDaoTestImpl();
-        dao = new VendingMachineDaoImpl(fileDao, "Hey");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        dao = ctx.getBean("dao", VendingMachineDaoImpl.class);
     }
 
     @Test
